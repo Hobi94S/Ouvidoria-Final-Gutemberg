@@ -15,7 +15,7 @@ O sistema interage com um banco de dados MySQL para garantir a persistência dos
 O sistema oferece um menu interativo com as seguintes operações CRUD (Create, Read, Delete):
 
 -   **Listar todas as manifestações:** Exibe um resumo de todas as manifestações cadastradas no banco de dados.
--   **Adicionar uma nova manifestação:** Permite ao usuário registrar um novo evento, escolhendo entre os tipos "Reclamação", "Elogio" ou "Sugestão".
+-   **Adicionar uma nova manifestação:** Permite ao usuário registrar um novo evento, escolhende entre os tipos "Reclamação", "Elogio" ou "Sugestão".
 -   **Buscar uma manifestação específica:** Procura e exibe os detalhes completos de uma manifestação a partir de seu código único.
 -   **Remover uma manifestação:** Exclui um registro do sistema utilizando seu código como identificador.
 -   **Exibir a contagem total:** Mostra o número total de manifestações atualmente registradas.
@@ -25,7 +25,7 @@ O sistema oferece um menu interativo com as seguintes operações CRUD (Create, 
 -   **Linguagem de Programação:** Python
 -   **Banco de Dados:** MySQL
 -   **Interface:** Terminal / Linha de Comando (CLI)
--   **Biblioteca de Conexão:** `mysql-connector-python` (ou similar)
+-   **Biblioteca de Conexão:** `mysql-connector-python`
 
 ## 🚀 Como Executar o Projeto
 
@@ -35,9 +35,13 @@ Para executar este projeto em sua máquina local, siga os passos abaixo.
 
 -   Python 3.x instalado.
 -   Servidor de banco de dados MySQL ativo.
--   A biblioteca Python para conectar ao MySQL. Você pode instalá-la com o pip:
+-   A biblioteca Python para conectar ao MySQL.
+
+    > **Atenção:** É crucial utilizar a versão `8.3.0` do conector para garantir a compatibilidade do projeto. Se você tiver uma versão mais recente instalada, é necessário fazer o downgrade.
+
+    Use o pip para instalar a versão correta:
     ```sh
-    pip install mysql-connector-python
+    pip install mysql-connector-python==8.3.0
     ```
 
 ### 1. Configuração do Banco de Dados
