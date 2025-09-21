@@ -8,7 +8,7 @@ def listarmanifestacoes(conn):
         print("Não existem manifestações cadastradas")
     else:
         for item in manifestacao:
-            print(f'Manifestação de Número {item[0]}): {item[1]}')
+            print(f'Manifestação de Código {item[0]})\nTítulo: {item[1]}\nTipo: {item[4]}\n')
 
 def addmanifestacoes(conn):
     addtitle = input("Digite o título da sua manifestação: ")
@@ -52,7 +52,7 @@ def buscarmanifestacoes(conn):
     else:
         for item in ManifestList:
             print(
-                f'A Manifestação pesquisada é: {item[0]})\nTítulo:{item[1]}\nAutor:{item[2]}\nRespondente:{item[3]}\nTipo:{item[4]}\nManifestação:{item[5]}')
+                f'\nA Manifestação pesquisada é: {item[0]})\nTítulo:{item[1]}\nAutor:{item[2]}\nRespondente:{item[3]}\nTipo:{item[4]}\nManifestação:{item[5]}')
 
 def removermanifestacao(conn):
     codigoMan = int(input("Digite o código da Manifestação a ser removida: "))
@@ -72,3 +72,36 @@ def totalizarmanifestacao(conn):
     quantManifest = listarBancoDados(conn, consulta)
 
     print(f"Atualmente existem {quantManifest[0][0]} Manifestações")
+
+
+def buscarportipo(conn):
+    while True:
+        print("\nSelecione o tipo da manifestação:")
+        print("1) Reclamação")
+        print("2) Elogio")
+        print("3) Sugestão")
+
+        escolha_tipo = int(input("Digite o número da opção desejada: "))
+
+        if escolha_tipo == 1:
+            addtipo = 'Reclamação'
+            break
+        elif escolha_tipo == 2:
+            addtipo = 'Elogio'
+            break
+        elif escolha_tipo == 3:
+            addtipo = 'Sugestão'
+            break
+        else:
+            print("\n!Erro! Opção inválida. Por favor, digite 1, 2 ou 3.")
+
+    consulta = "select * from Ouvidoriav2 where tipo = %s"
+    valores = [addtipo]
+    ManifestList = listarBancoDados(conn, consulta, valores)
+
+    if len(ManifestList) == 0:
+        print(f"\nNenhuma manifestação do tipo '{addtipo}' foi encontrada.")
+    else:
+        print(f"\nManifestações do tipo '{addtipo}' encontradas:")
+        for item in ManifestList:
+            print(f'Código: {item[0]}\nTítulo:{item[1]}\nAutor:{item[2]}\nRespondente:{item[3]}\nTipo:{item[4]}\nManifestação:{item[5]}\n')
